@@ -1,0 +1,41 @@
+digraph communication_emetteur_detail {
+    rankdir=TB;             // top-to-bottom
+    compound=true;          // permet lhead/ltail pour entrer/sortir d'un cluster
+    splines=ortho;          // jolies flèches orthogonales
+    nodesep=0.35; ranksep=0.6;
+
+    graph [fontname="Inter"];
+    node  [
+        shape=box,
+        style="rounded,filled",
+        fontname="Inter",
+        fixedsize=true,
+        width=2.2,
+        height=0.9,
+        fillcolor="#whote"; 
+    ];
+    edge  [fontname="Inter"];
+
+    // Niveaux hors émetteur
+    source       [label="Source\nd'information"];
+
+    // Cluster Émetteur (décomposition en 3 blocs)
+    subgraph cluster_emetteur {
+        label="emetteur";
+        fontname="Inter";
+        style="rounded";
+        fillcolor="white";
+        margin=12; pad=12;
+
+        gen   [label="Génération"];
+        trans [label="Traitement"];
+        store [label="Stockage\n(optionnel)"];
+
+        // Laisser Graphviz les empiler verticalement
+        gen -> trans -> store;
+    }
+
+    // Connexions avec entrée/sortie du cluster
+    source -> gen   [label=" message ", lhead=cluster_emetteur];
+    store  -> canal [label=" signal ", ltail=cluster_emetteur];
+}

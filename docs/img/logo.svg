@@ -1,0 +1,5 @@
+<svg baseProfile="full" version="1.1" viewBox="-10 -10 220 220" xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink"><defs />
+    <circle cx="100.0" cy="100.0" fill="transparent" r="96.0" stroke="black" stroke-width="15" />
+    <line stroke-linecap="round" stroke="black" stroke-width="15" x1="30" x2="170" y1="100" y2="100" />
+    <line stroke-linecap="round" stroke="black" stroke-width="15" x1="170" x2="120" y1="100" y2="140" />
+</svg>

@@ -1,0 +1,28 @@
+digraph communication {
+    rankdir=TB; // top-to-bottom
+    graph [fontname="Inter"];
+
+    node [
+        shape=box,
+        style="rounded,filled",   // coins arrondis
+        fontname="Inter",
+        fixedsize=true,
+        width=2.2,
+        height=1,
+        fillcolor="white"; 
+    ];
+    edge [fontname="Inter"];
+
+    // Nœuds (placés verticalement automatiquement grâce à rankdir=TB)
+    source       [label="Source\nd'information"];
+    encoder      [label="Émetteur\n(codage)"];
+    channel      [label="Canal"];
+    decoder      [label="Récepteur\n(décodage)"];
+    destination  [label="Destination"];
+
+    // Connexions verticales
+    source     -> encoder     [label="  information "];
+    encoder    -> channel     [label="  signal "];
+    channel    -> decoder     [label="  signal "];
+    decoder    -> destination [label="  information "];
+}

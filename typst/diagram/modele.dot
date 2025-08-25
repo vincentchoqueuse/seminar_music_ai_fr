@@ -1,0 +1,16 @@
+digraph simple_model {
+    rankdir=LR;
+    bgcolor="transparent";
+
+    node [fontname="Inter", height=0.9];
+
+    // Nœuds invisibles pour les flèches
+    x [label="", shape=point, width=0.01, style=invis];
+    y [label="", shape=point, width=0.01, style=invis];
+
+    // Boîte modèle
+    modele [label="modèle", width=2.2, shape=box, style="rounded,filled", fillcolor="#FFFFFF"];
+
+    // Liens
+    x -> modele -> y;
+}

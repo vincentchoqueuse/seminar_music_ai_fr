@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Musique et Technologie</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"   
+    />
+  <style>
+    /* Reset et base */
+    body {
+      margin: 0;
+      font-feature-settings: normal;
+font-family: ui-sans-serif,-apple-system,system-ui,Segoe UI,Helvetica,Apple Color Emoji,Arial,sans-serif,Segoe UI Emoji,Segoe UI Symbol;
+      display: flex;
+      height: 100vh;
+      font-size: 16px;
+      line-height: 28px;
+      color: #2c2c2c;
+      background-color: #ffffff; /* clair */
+    }
+
+    .sidebar {
+      width: 250px;      
+      background-color: #f9f9f9;
+      border-right: 1px solid #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+
+
+
+    .sidebar-content, .sidebar-header, .sidebar-footer{
+      padding: 10px 20px;
+    }
+
+    .sidebar-header{
+      padding-top: 20px;
+    }
+
+    .sidebar-content{
+      padding-top: 0px;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;  /* pousse le footer tout en bas */
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .sidebar-footer a {
+      font-size: 13px;
+      color: #444;
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    .sidebar-footer a:hover {
+      background-color: #f0f0f0;
+      color: #000;
+    }
+
+    .sidebar h2 {
+      font-size: 12px;
+      margin-bottom: 2px;
+      padding-left: 10px;
+      color: #b1b1b1;
+    }
+
+    .sidebar a {
+      font-family: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+      text-decoration: none;
+      color: rgb(13, 13, 13);
+      font-size: 14px;
+      line-height: 20px;
+      margin: 0;
+      padding: 10px 10px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+      display: block;
+    }
+
+    .sidebar a:hover {
+      background-color: #f0f0f0;
+      color: #000;
+    }
+
+    /* Contenu principal */
+    .content {
+        flex: 1;
+        background-color: #ffffff; /* fond clair */
+        padding: 20px;
+        overflow-y: auto;
+    }
+
+    .content h2, .content h3 {
+      color: rgb(13, 13, 13);
+      font-weight: 600;
+      padding: 20px 0px;
+    }
+
+    iframe {
+      border-radius: 8px;
+      margin-bottom: 30px;
+      border: 1px solid #ddd;
+    }
+
+    h1 small {
+    display: block; /* met le sous-titre à la ligne */
+    font-size: 0.75em; /* moitié de la taille du titre */
+    font-weight: 400;
+    color: #7b7b7b;
+    margin-top: 0.5em;
+    letter-spacing: 0.5px;
+    }
+
+    p {
+    color: #2c2c2cd6;        /* texte sobre et lisible */
+    margin-bottom: 1.5em;
+    }
+
+    /* Mise en avant façon "réponse générée" */
+    p strong {
+    background-color: #00000026;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+    }
+
+    .logo-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    }
+    .logo-text img {
+    width: 24px;
+    height: auto;
+    }
+
+.swiper {
+      width: 50%;
+      border-radius: 12px;
+      background: #fff;
+      padding: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      object-fit: contain;
+    }
+
+    .swiper-slide p {
+      font-size: 14px;
+      line-height: 1.4;
+      color: #00000026;
+      max-width: 80%;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #00000026;
+    }
+
+    .swiper-pagination-bullet {
+      background: #8f8f8f;
+      opacity: 0.6;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #111;
+    }
+
+    .main{
+        max-width: 900px;
+        margin: 0 auto;
+        
+    }
+
+    hr{
+      border: none;              /* Supprime le style par défaut */
+      border-top: 1px solid #00000026;  /* Applique une ligne personnalisée */
+      margin: 1em 0;             /* Espacement vertical */
+    }
+
+    @media (max-width: 768px) { .sidebar { display:none; } }
+
+    /* Tablette */
+    @media (min-width: 768px) {
+    .content {
+        padding: 40px;              /* un peu plus d’air */
+    }
+    }
+
+    /* Desktop large */
+    @media (min-width: 1200px) {
+    .content {
+        padding: 40px 80px;         /* marges latérales plus grandes */
+    }
+    }
+
+
+.info {
+  flex: 1;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.artist {
+  font-size: 13px;
+  color: #555;
+}
+
+.track audio {
+  width: 120px;
+  height: 28px;
+}
+
+.simple-list {
+  list-style-type: disc;   /* puces rondes classiques */
+  margin: 1em 0;           /* espace au-dessus et en dessous */
+  padding-left: 1.5em;     /* indentation des puces */
+}
+
+.simple-list li {
+  margin-bottom: 0.6em;    /* espace vertical entre les items */
+  line-height: 1.6;        /* hauteur de ligne adaptée au reste du texte */
+}
+
+a{  
+    color: #2964aa;
+    text-decoration: none;
+}
+
+a:hover{  
+    color: #749ac8;
+}
+
+  </style>
+
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <div class="sidebar-header">
+          <div style="display:flex; align-items:center; gap:8px">
+              <img src="./img/logo.svg" style="width:24px;"></img>
+              <span class="logo-text">Choc29</span>
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <h2>Musique et Technologie</h2>
+          <a href="#acoustique">Partie I: Acoustique</a>
+          <a href="#electronique">Partie II: Électronique</a>
+          <a href="#numerique">Partie III: Numérique</a>
+
+          <h2>IA et Musique</h2>
+          <a href="#bss">Separation de Sources</a>
+          <a href="#composition">Composition Automatique</a>
+          <a href="#vc">Clonage Vocal</a>
+          <a href="#synthesis">Transfert de Timbre</a>
+          <a href="#t2a">Modèle Text2Music</a>
+        </div>
+        <div class="sidebar-footer">
+          <a href="https://github.com/ton-profil" target="_blank">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" 
+                 alt="GitHub" 
+                 style="width:16px; vertical-align:middle; margin-right:6px;">
+            GitHub
+          </a>
+        </div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="content">
+        <div class="main">
+
+        <h1>Musiciens et Machines<small>Quand l'IA entre en scène</small></h1>
+
+        <hr>
+
+        <h2>Musique et Technologie</h2>
+
+        <p>
+            La musique a toujours avancé avec la technologie.  
+            Chaque époque a ses révolutions :  
+            l’acoustique et ses instruments,  
+            l’électrique qui amplifie et déforme,  
+            le numérique qui copie et transforme à l’infini.  
+            </p>
+
+        <h3 id="acoustique">Partie I: Acoustique</h3>
+
+        <h4>Illustrations</h4>
+
+        <div class="swiper">
+            <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Jean_Richafort_-_De_mon_triste_déplaisir.jpg" alt="Partition neumatique médiévale">
+                <p>Partition neumatique (notation médiévale)</p>
+            </div>
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Fl%C3%BBte_pal%C3%A9olithique_%28mus%C3%A9e_national_de_Slov%C3%A9nie%2C_Ljubljana%29_%289420310527%29.jpg" alt="Flûte paléolithique">
+                <p>Flûte paléolithique (Divje Babe, ~43 000 ans)</p>
+              </div>
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Playing_lyre_Met_23.160.80.jpg" alt="Lyre grecque antique">
+                <p>Lyre grecque antique (peinture sur vase)</p>
+              </div>
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Baga_Branly.JPG" alt="Tambour traditionnel africain">
+                <p>Tambour traditionnel africain (percussion universelle)</p>
+              </div>
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Britannica_Horn_Medieval_Hunting-Horn.png" alt="Corne de chasse médiévale">
+                <p>Corne de chasse médiévale (instrument à vent primitif)</p>
+              </div>
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/07Epidaurus_Theater07.jpg" alt="Théâtre d'Épidaure">
+                <p>Théâtre d’Épidaure — acoustique antique exceptionnelle</p>
+              </div>
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/ClavecinHemsch.jpg" alt="Clavecin ancien">
+                <p>Clavecin ancien (J.-H. Hemsch, 1761)</p>
+              </div>
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Music_Box_And_Key%2C_late_19th_century_%28CH_18416829%29.jpg" alt="Boîte à musique mécanique XIXe">
+                <p>Boîte à musique mécanique (XIXᵉ s.)</p>
+              </div>
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Violin%2C_1716-Antonio_Stradivari.jpg" alt="Violon Stradivarius">
+                <p>Violon Stradivarius (XVIIᵉ s.)</p>
+              </div>
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/12_PAC_-_Bouches-du-Rhône_-_Arles_-_Amfitheater_%282013-05-15_16-06-14%29.jpg" alt="Amphithéâtre romain Arles">
+                <p>Amphithéâtre romain (Arles) — diffusion sonore architecturale</p>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <h4>Playlist</h4>
+
+        <iframe title="deezer-widget" src="https://widget.deezer.com/widget/light/playlist/14207897181"
+        width="100%" height="300" frameborder="0" allowtransparency="true"
+        allow="encrypted-media; clipboard-write"></iframe>
+
+        <h3 id="electronique">Partie II: Électronique</h3>
+
+        <h4>Illustrations</h4>
+
+        <div class="swiper">
+            <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Prerecorded_cassette_%28Brian_Eno_-_Nerve_Net%29_with_Digalog_sticker_01.jpg" alt="Vinyle et cassette">
+                <p>Cassettes audio</p>
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Edison_and_phonograph_edit1.jpg" alt="Phonographe Edison">
+                <p>Phonographe d’Edison (1877)</p>
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Rhodes_Mk_II_73_cropped.jpg" alt="Piano électrique Rhodes">
+                <p>Piano électrique (Rhodes)</p>
+            </div>
+        
+            <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Hammond_B3_%282014-04-14_by_jmorland_at_pixabay%29.jpg" alt="Orgue Hammond">
+                <p>Orgue Hammond B3</p>
+            </div>
+
+            <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Mellotron.jpg" alt="Mellotron">
+                <p>Mellotron (échantillonneur électromécanique, 1960s)</p>
+              </div>
+
+            <!-- Génération -->
+            <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Fender_Highway_1_Stratocaster.jpg" alt="Guitare électrique">
+                <p>Guitare électrique (ex. Fender Stratocaster)</p>
+            </div>
+        
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Minimoog_%40_Moogseum%2C_NAMM_2010.jpg" alt="Minimoog">
+                <p>Synthétiseur Minimoog (années 1970)</p>
+              </div>
+
+              <div class="swiper-slide">
+              <img src=" https://upload.wikimedia.org/wikipedia/en/f/fe/ARP_2600_pic.jpg" alt="Arp 2600">
+              <p>Synthétiseur ARP 2600 (années 1971)</p>
+            </div>
+
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/TR-808_-_MIM%2C_Phoenix_%282019-08-30_14.59.26_by_Bryan_Pocius%29_%28cropped%29.jpg" alt="Roland TR-808">
+                <p>Roland TB-808 (boite à rythmes, 1980)</p>
+              </div>
+        
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Roland_TB-303_Panel.jpg" alt="Roland TB-303">
+                <p>Roland TB-303 (synthétiseur basse, 1981)</p>
+              </div>
+
+              <!-- Traitement -->
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/15_efx.JPG" alt="Pédales d'effets guitare">
+                <p>Effets sonores (distorsion, delay, reverb)</p>
+              </div>
+        
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Technics_SL-1200MK2-2.jpg" alt="Platines vinyles DJ">
+                <p>Djing (platines vinyles Technics SL-1200)</p>
+              </div>
+        
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Vinilos_distintos_tamaños.jpg" alt="Vinyle">
+                <p>Vinyles</p>
+              </div>
+            <!-- Canal -->
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Vintage_JVC_FM-AM_9-Transistor_Radio%2C_Model_9F-220C_%288333901983%29.jpg" alt="Radio FM/AM vintage">
+                <p>Transmission hertzienne (radio FM/AM)</p>
+              </div>
+        
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+            <iframe title="deezer-widget" src="https://widget.deezer.com/widget/light/playlist/14207947981"
+            width="100%" height="300" frameborder="0" allowtransparency="true"
+            allow="encrypted-media; clipboard-write">
+            </iframe>
+
+
+        <h3 id="numerique">Partie III: Numérique</h3>
+
+        <h4>Illustrations</h4>
+
+        <div class="swiper">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Audio_Compact_Disc.png" alt="CD audio">
+                    <p>CD audio (1979)</p>
+                  </div>
+        
+              <!-- Génération -->
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Yamaha_DX7_synthesizer_-_combined_image_with_diagonal_and_top_views.jpg" alt="Yamaha DX7">
+                <p>Yamaha DX7 (synthétiseur numérique, 1983)</p>
+              </div>
+        
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Akai_MPC2000XL.jpg" alt="Akai MPC">
+                <p>Akai MPC (échantillonneur/boîte à rythmes)</p>
+              </div>
+        
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Arturia_KeyLab_49_-_2014_NAMM_Show_%28by_Matt_Vanacoro%29.jpg" alt="Arturia controller">
+                <p>Contrôleur MIDI (Arturia KeyLab / BeatStep)</p>
+              </div>
+        
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/en/d/da/Rebirth_rb-338_screenshot.png" alt="ReBirth RB-338">
+                <p>Logiciel ReBirth RB-338 (émulation TB-303/808)</p>
+              </div>
+        
+              <div class="swiper-slide">
+                <img src="https://medias.audiofanzine.com/images/normal/xfer-records-serum-6248680.jpg" alt="Xfer Serum VST">
+                <p>Instrument virtuel Xfer Serum (VSTi)</p>
+              </div>
+        
+              <!-- Traitement -->
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Ableton_Live_Screenshot.png" alt="Ableton Live">
+                <p>Ableton Live (séquenceur audio/MIDI)</p>
+              </div>
+        
+              <div class="swiper-slide">
+                <img src="https://medias.audiofanzine.com/images/normal/antares-audio-technology-auto-tune-pro-3825485.png" alt="Auto-Tune software">
+                <p>Antares Auto-Tune (effet numérique)</p>
+              </div>
+        
+              <div class="swiper-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/NI_Traktor_Kontrol_S4_MK2_Controller_Top.jpg" alt="DJ controller Native Instruments">
+                <p>Contrôleur DJ numérique (Native Instruments Traktor)</p>
+              </div>
+
+              <div class="swiper-slide">
+                <img src="https://store-images.s-microsoft.com/image/apps.3764.13510798886741797.7eb26031-6ff0-4df1-bf81-343ec04225f0.9c6feb15-77d6-4fee-a400-736f8acbfe8c" alt="Deezer logo">
+                <p>Streaming musical (Deezer / Internet)</p>
+              </div>
+        
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+            <h4>Playlist</h4>
+
+            <iframe title="deezer-widget" src="https://widget.deezer.com/widget/light/playlist/14208023841"
+            width="100%" height="300" frameborder="0" allowtransparency="true"
+            allow="encrypted-media; clipboard-write"></iframe>
+  
+        <hr>
+
+        <h2>Musique et IA</h2>
+
+        <p>“Après l’électricité et le numérique, l’IA s’impose comme une nouvelle révolution musicale. La vraie question n’est pas comment les machines composent, mais comment nous allons les utiliser.”</p>
+
+            <iframe title="deezer-widget" src="https://widget.deezer.com/widget/light/playlist/14219691701" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media; clipboard-write"></iframe>
+            
+            <h3 id="bss">Séparation de sources (Stem Separation)</h3>
+            
+            <p>
+              Isoler voix, batterie, basse ou instruments d’un morceau complet grâce au deep learning (DJing ++).
+            </p>
+
+            <div class="mermaid">
+                timeline
+                    2020 : Spleeter (Deezer)
+                    2021 : Demucs (Meta)
+                    2023 : Sound Demixing Challenge
+            </div>
+            
+            
+            <h4>Contributions scientifiques majeures</h4>
+            <ul class="simple-list">
+                <li>Spleeter (Deezer / 2020) 
+                    <a target="_blank" href="https://www.deezer-techservices.com/solutions/spleeter/">(site)</a> 
+                    <a target="_blank" href="https://www.theoj.org/joss-papers/joss.02154/10.21105.joss.02154.pdf">(pdf)</a> 
+                    <a target="_blank" href="https://github.com/deezer/spleeter">(github)</a> 
+                </li>
+                <li>Demucs (Meta / 2021) 
+                    <a target="_blank" href="https://ai.honu.io/papers/htdemucs/index.html">(site + exemples)</a> 
+                    <a target="_blank" href="https://arxiv.org/abs/2111.03600">(pdf)</a> 
+                    <a target="_blank" href="https://github.com/adefossez/demucs">(github)</a> 
+                </li>
+                <li>Challenge pour chercheurs : 
+                    <a href="https://www.aicrowd.com/challenges/sound-demixing-challenge-2023" target="_blank">Sound Demixing Challenge</a>.
+                </li>
+            </ul>
+            
+            <h4>Outils pour musiciens</h4>
+            <ul class="simple-list">
+                <li>Izotope RX11 
+                    <a target="_blank" href="https://www.izotope.com/en/products/rx.html?">(site)</a>
+                </li>
+                <li>Native Instruments Maschine 3 
+                    <a target="_blank" href="https://www.native-instruments.com/en/products/maschine/maschine-accessories/maschine-3/">(site)</a>
+                </li>
+                <li>Native Instruments Traktor Pro 4 
+                    <a target="_blank" href="https://www.native-instruments.com/en/products/traktor/dj-software/traktor-pro-4/?srsltid=AfmBOoopZ-p6GJLW7rJ2PMtCiBp015_GHs5CYiOFcCiMhXWiMxUd4hsW">(site)</a>
+                </li>
+            </ul>
+
+            <h3 id="composition">Composition automatique</h3>
+            
+            <p>
+              Générer des mélodies, harmonies ou arrangements à partir de règles, d’un style choisi ou d’une description textuelle (Text-to-MIDI).
+            </p>
+
+            <div class="mermaid">
+                timeline
+                    1989 : CONCERT (premiers systèmes à règles)
+                    2016 : PerformanceRNN (Magenta)
+                    2019 : MuseNet (OpenAI)
+                    2019 : Music Transformer (Magenta)
+                    2023 : MuseCoco (Tencent)
+            </div>
+            
+            <h4>Contributions scientifiques majeures</h4>
+            <ul class="simple-list">
+                <li>CONCERT (1989) : génération automatique de mélodies à partir de contraintes harmoniques.</li>
+                <li>Magenta / PerformanceRNN (Google, 2016–2017) 
+                    <a target="_blank" href="https://magenta.tensorflow.org/performance-rnn">(site)</a>
+                </li>
+                <li>MuseNet (OpenAI / 2019) 
+                    <a target="_blank" href="https://openai.com/research/musenet">(site + exemples)</a>
+                </li>
+                <li>Music Transformer (Google Magenta / 2019) 
+                    <a target="_blank" href="https://magenta.tensorflow.org/music-transformer">(site)</a>
+                    <a target="_blank" href="https://arxiv.org/abs/1809.04281">(pdf)</a>
+                </li>
+                <li>MuseCoco (Tencent AI Lab / 2023) 
+                    <a target="_blank" href="https://arxiv.org/abs/2306.00110">(pdf)</a>
+                    <a target="_blank" href="https://ai-muzic.github.io/musecoco/">(github)</a>
+                </li>
+            </ul>
+            
+            <h4>Outils pour musiciens</h4>
+            <ul class="simple-list">
+                <li>AIVA (2016–) 
+                    <a target="_blank" href="https://www.aiva.ai/">(lien)</a>
+                </li>
+                <li>Amper Music (2017–) 
+                    <a target="_blank" href="https://www.shutterstock.com/discover/ampermusic">(lien)</a>
+                </li>
+                <li>MuseNet (OpenAI / 2019) 
+                    <a target="_blank" href="https://openai.com/research/musenet">(lien)</a>
+                </li>
+                <li>Google Magenta Studio (2019–) 
+                    <a target="_blank" href="https://magenta.tensorflow.org/studio">(lien)</a>
+                </li>
+            </ul>
+            
+            <h3 id="vc">Clonage Vocal (Voice Cloning)</h3>
+            
+            <p>
+              Reproduire la voix d’un chanteur ou d’un comédien grâce à l’IA. 
+              Les applications vont du doublage multilingue aux chansons “posthumes”, en passant par la création de voix artificielles réalistes.
+            </p>
+
+            <div class="mermaid">
+                timeline
+                    2016 : WaveNet (DeepMind)
+                    2018 : SV2TTS
+                    2020 : Descript Overdub
+                    2023 : VALL-E (Microsoft)
+                    2023 : ElevenLabs
+                    2024 : ACE Studio
+            </div>
+
+
+            <h4>Contributions scientifiques majeures</h4>
+            <ul class="simple-list">
+                <li>WaveNet (DeepMind / 2016) 
+                    <a target="_blank" href="https://deepmind.google/discover/blog/wavenet-a-generative-model-for-raw-audio/">(site)</a>
+                    <a target="_blank" href="https://arxiv.org/abs/1609.03499">(pdf)</a>
+                </li>
+                <li>SV2TTS (2018) : encoder–synthesizer–vocoder permettant de cloner une voix à partir de quelques secondes d’audio. 
+                    <a target="_blank" href="https://arxiv.org/abs/1806.04558">(pdf)</a>
+                    <a target="_blank" href="https://github.com/CorentinJ/Real-Time-Voice-Cloning">(github)</a>
+                </li>
+                <li>VALL-E (Microsoft / 2023) : synthèse vocale zéro-shot à partir de 3 secondes d’échantillon. 
+                    <a target="_blank" href="https://lifeiteng.github.io/valle/index.html">(exemples)</a>
+                    <a target="_blank" href="https://arxiv.org/abs/2301.02111">(pdf)</a>
+                </li>
+            </ul>
+            
+            <h4>Outils pour musiciens et créateurs</h4>
+            <ul class="simple-list">
+                <li>Descript Overdub (2020–) 
+                    <a target="_blank" href="https://www.descript.com/overdub">(site)</a>
+                </li>
+                <li>Respeecher (2020–) 
+                    <a target="_blank" href="https://www.respeecher.com/">(site)</a>
+                </li>
+                <li>iSpeech / Replica Studios (2021–) 
+                    <a target="_blank" href="https://replicastudios.com/">(site)</a>
+                </li>
+                <li>ElevenLabs (2023–) 
+                    <a target="_blank" href="https://elevenlabs.io/">(site)</a>
+                </li>
+                <li>Grimes / Elf.Tech (2023–) 
+                    <a target="_blank" href="https://elf.tech/">(site)</a>
+                </li>
+                <li>ACE Studio (2024–) 
+                    <a target="_blank" href="https://ace-studio.ai/">(site)</a>
+                </li>
+            </ul>
+            
+            <h3 id="synthesis">Synthèse sonore</h3>
+            
+            <p>
+              Créer de nouveaux sons ou instruments directement à partir de modèles génératifs (au-delà du simple sampling), contrôlables en temps réel.
+            </p>
+
+            <div class="mermaid">
+                timeline
+                    2017 : NSynth (Google)
+                    2020 : DDSP (Google)
+                    2021 : RAVE (IRCAM)
+                    2022 : EnCodec (Meta)
+                    2022 : AudioLM (Google)
+            </div>
+            
+            
+            <h4>Contributions scientifiques majeures</h4>
+            <ul class="simple-list">
+                <li>NSynth (Google Magenta / 2017) 
+                    <a target="_blank" href="https://magenta.tensorflow.org/nsynth">(site)</a>
+                    <a target="_blank" href="https://arxiv.org/abs/1704.01279">(pdf)</a>
+                </li>
+                <li>DDSP (Google / 2020) 
+                    <a target="_blank" href="https://magenta.tensorflow.org/ddsp">(site)</a>
+                    <a target="_blank" href="https://arxiv.org/abs/2001.04643">(pdf)</a>
+                    <a target="_blank" href="https://github.com/magenta/ddsp">(github)</a>
+                </li>
+                <li>RAVE (IRCAM / 2021) 
+                    <a target="_blank" href="https://arxiv.org/abs/2111.05011">(pdf)</a>
+                    <a target="_blank" href="https://github.com/acids-ircam/RAVE">(github)</a>
+                </li>
+                <li>EnCodec (Meta / 2022) 
+                    <a target="_blank" href="https://arxiv.org/abs/2210.13438">(pdf)</a>
+                    <a target="_blank" href="https://github.com/facebookresearch/encodec">(github)</a>
+                </li>
+                <li>AudioLM (Google / 2022) 
+                    <a target="_blank" href="https://arxiv.org/abs/2209.03143">(pdf)</a>
+                    <a target="_blank" href="https://google-research.github.io/seanet/audiolm/examples/">(exemples)</a>
+                </li>
+            </ul>
+            
+            <h4>Outils pour musiciens</h4>
+            <ul class="simple-list">
+                <li>DDSP-VST (Google Magenta) 
+                    <a target="_blank" href="https://magenta.tensorflow.org/ddsp-vst">(lien)</a>
+                </li>
+                <li>RAVE-VST (IRCAM / 2022) 
+                    <a target="_blank" href="https://forum.ircam.fr/projects/detail/rave-vst/">(lien)</a>
+                </li>
+                <li>Flow Machines (Sony CSL) 
+                    <a target="_blank" href="https://www.flow-machines.com/">(lien)</a>
+                </li>
+            </ul>
+
+                        
+            <h3 id="t2a">Génération Texte → Audio (Text-to-Audio / Music LM)</h3>
+            
+            <p>
+              Générer automatiquement des sons ou de la musique à partir d’une simple description textuelle 
+              (“un piano jazz doux avec un rythme de batterie bossa nova”). 
+              Les progrès récents transforment la composition et la production musicale.
+            </p>
+
+            <div class="mermaid">
+                timeline
+                    2020 : Jukebox (OpenAI)
+                    2023 : MusicLM (Google)
+                    2023 : MusicGen (Meta)                    
+                    2024 : Stable Audio Open (Stability AI)
+                    2025 : ACE-Step
+                    2025 : ElevenLabs Music
+            </div>
+            
+            <h4>Contributions scientifiques majeures</h4>
+            <ul class="simple-list">
+                <li>Challenge pour chercheurs : 
+                    <a href="https://arxiv.org/abs/2301.11325" target="_blank">Benchmark MusicCaps (Google)</a>.
+                </li>
+                <li>Jukebox (OpenAI / 2020) 
+                    <a target="_blank" href="https://openai.com/research/jukebox">(site + exemples)</a> 
+                    <a target="_blank" href="https://arxiv.org/abs/2005.00341">(pdf)</a> 
+                    <a target="_blank" href="https://github.com/openai/jukebox">(github)</a>
+                </li>
+                <li>MusicLM (Google / 2023) 
+                    <a target="_blank" href="https://google-research.github.io/seanet/musiclm/examples/">(exemples)</a>
+                    <a target="_blank" href="https://arxiv.org/abs/2301.11325">(pdf)</a>
+                </li>
+                <li>MusicGen (Meta / 2023) 
+                    <a target="_blank" href="https://ai.honu.io/papers/musicgen/">(site + exemples)</a>
+                    <a target="_blank" href="https://arxiv.org/abs/2306.05284">(pdf)</a>
+                    <a target="_blank" href="https://github.com/facebookresearch/audiocraft">(github)</a>
+                </li>
+                <li>ACE-Step (2025)  
+                    <a target="_blank" href="https://github.com/ace-step/ACE-Step">(github)</a>
+                </li>
+                <li>Stable Audio Open (Stability AI / 2024) 
+                    <a target="_blank" href="https://stability.ai/news/stable-audio-open">(site)</a> 
+                    <a target="_blank" href="https://huggingface.co/stabilityai/stable-audio-open-1.0">(HuggingFace)</a>
+                </li>
+            </ul>
+            
+            <h4>Outils pour musiciens</h4>
+            <ul class="simple-list">
+                <li>Mubert Render (2022–) : génération de musique illimitée via prompt texte, API pour créateurs et marques. 
+                    <a target="_blank" href="https://mubert.com/render">(site)</a>
+                </li>
+                <li>Riffusion / Producer.ai (2022–) : génération musicale à partir de spectrogrammes (diffusion), devenue Producer.ai en 2025. 
+                    <a target="_blank" href="https://www.riffusion.com/">(site)</a>
+                </li>
+                <li>Suno (2023–) : génération de chansons complètes à partir d’un prompt texte (voix + accompagnement). 
+                    <a target="_blank" href="https://suno.com/">(site)</a>
+                </li>
+                <li>Stable Audio (Stability AI / 2023–) : plateforme payante orientée musique de production et sound design. 
+                    <a target="_blank" href="https://www.stableaudio.com/">(site)</a>
+                </li>
+                <li>Udio (2024–) : création de morceaux chantés et instrumentaux, avec options de remix et d’édition. 
+                    <a target="_blank" href="https://www.udio.com/">(site)</a>
+                </li>
+                <li>ElevenLabs Music (2025–) : service de génération musicale “studio-grade” à partir de texte, usage commercial. 
+                    <a target="_blank" href="https://elevenlabs.io/music">(site)</a>
+                </li>
+            </ul>
+            
+            
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+          loop: true,
+          spaceBetween: 30,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      </script>
+      <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: "base",
+            themeVariables: {
+            primaryColor: "#8f8f8f19",
+            primaryBorderColor: "#2c2c2c",
+            primaryTextColor: "#2c2c2c",
+            lineColor: "#2c2c2c",
+            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;',
+            background: "#ffffff"
+            }
+        });
+      </script>
+</body>
+</html>
+
