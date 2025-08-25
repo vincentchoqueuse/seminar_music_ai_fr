@@ -20,4 +20,4 @@ Support pour le séminaire / cours donné par **V. Choqueuse (ENIB, Bretagne INP
 Le site est servi via **GitHub Pages** :
 
 - [présentation compilé](https://github.com/vincentchoqueuse/seminar_music_ai_fr/blob/main/typst/main.pdf)
-- [site web](https://github.com/vincentchoqueuse/seminar_music_ai_fr/blob/main/typst/main.pdf)
+- [site web](https://vincentchoqueuse.github.io/seminar_music_ai_fr/)
